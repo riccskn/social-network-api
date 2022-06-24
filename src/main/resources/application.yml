@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: social
+  datasource:
+    password: password
+    url: jdbc:postgresql://localhost:5432/socialnetwork
+    username: amigoscode
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+  jackson:
+    serialization:
+      fail-on-empty-beans: false

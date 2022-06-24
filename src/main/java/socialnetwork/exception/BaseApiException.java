@@ -2,18 +2,18 @@ package socialnetwork.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class BaseException extends RuntimeException{
+public class BaseApiException extends RuntimeException{
 
     private final HttpStatus status;
     private final String message;
 
-    public BaseException(HttpStatus status, String message) {
+    public BaseApiException(HttpStatus status, String message) {
         super();
         this.status = status;
         this.message = message;
     }
 
-    public BaseException(HttpStatus status, String message, Throwable exception) {
+    public BaseApiException(HttpStatus status, String message, Throwable exception) {
         super(exception);
         this.status = status;
         this.message = message;
