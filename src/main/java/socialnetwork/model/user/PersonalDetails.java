@@ -9,10 +9,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "users_details")
 public class PersonalDetails {
@@ -31,5 +30,6 @@ public class PersonalDetails {
     @NotBlank
     @Size(max = 10)
     private String birthDate;
+
 
 }

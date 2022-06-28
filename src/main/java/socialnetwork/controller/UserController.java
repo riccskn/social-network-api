@@ -26,6 +26,7 @@ public class UserController {
     public ResponseEntity<User> registerUser(@Valid @RequestBody User user) {
 
         User newUser = userService.addUser(user);
+
         log.info("User {} registered",user.getUsername());
 
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
@@ -50,16 +51,18 @@ public class UserController {
 
     @GetMapping("/{username}/posts")
     public ResponseEntity<List<Post>> getPosts(@PathVariable(value = "username") String username) {
+
         log.info("Getting {} posts",username);
 
         return new ResponseEntity<>(userService.getPosts(username),HttpStatus.OK);
-
     }
 
 
     @GetMapping
     public List<User> getAllUsers() {
-       return userService.getAllUsers();
+
+        log.info("Getting all users");
+        return userService.getAllUsers();
     }
 
 }

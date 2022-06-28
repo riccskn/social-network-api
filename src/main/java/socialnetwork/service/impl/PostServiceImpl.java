@@ -49,18 +49,11 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PagedResponse<Post> getAllPosts(int page, int size) {
-
         Pageable pageable = PageRequest.of(page,size);
 
         Page<Post> postsPage = postRepository.findAll(pageable);
 
         List<Post> posts = postsPage.getContent();
-
-        if (postsPage.isEmpty()) {
-
-            System.out.println("**********************************************************************************************************************************************************************");
-
-        }
 
         return new PagedResponse<>(posts,postsPage.getNumber(),postsPage.getSize(),postsPage.getTotalElements(),postsPage.getTotalPages(),postsPage.isLast());
     }

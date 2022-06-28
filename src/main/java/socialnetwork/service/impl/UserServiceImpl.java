@@ -40,20 +40,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserProfile getUserProfile(String username) {
-        if (!userRepository.existsByUsername(username)) {
-            throw new ResourceNotFoundException(HttpStatus.NOT_FOUND,"User with username: "+username+" not found");
-        }
-        User user = userRepository.findByUsername(username).get();
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException(HttpStatus.NOT_FOUND,"User with username: "+username+" not found"));
 
-        return new UserProfile(
-           user.getId(),
-          user.getFirstName(),
-          user.getLastName(),
-          user.getUsername(),
-          user.getEmail(),
-          user.getPersonalDetails(),
-          user.getDescription(),
-          user.getVerifiedAccount()
+        return new UserProfile(user.getId(), user.getFirstName(),user.getLastName(), user.getUsername(), user.getEmail(), user.getPersonalDetails(), user.getDescription(),user.getVerifiedAccount()
         );
     }
 
@@ -68,9 +57,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Post> getPosts(String username) {
         return userRepository.findByUsername(username).orElseThrow( () -> {
-
             throw new ResourceNotFoundException(HttpStatus.NOT_FOUND,"User with username: "+username+" not found");
-
         }).getPosts();
     }
 
@@ -78,9 +65,7 @@ public class UserServiceImpl implements UserService {
     public User deleteUserByUsername(String username) {
 
         User user = userRepository.findByUsername(username).orElseThrow( () -> {
-
             throw new ResourceNotFoundException(HttpStatus.NOT_FOUND,"User with username: "+username+" not found");
-
         });
 
         userRepository.delete(user);
