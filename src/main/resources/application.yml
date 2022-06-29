@@ -2,9 +2,9 @@ spring:
   application:
     name: social
   datasource:
-    password: password
-    url: jdbc:postgresql://localhost:5432/socialnetwork
-    username: amigoscode
+    url: jdbc:postgresql://${DB_HOST}:5432/socialnetwork
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
   jpa:
     properties:
       hibernate:
